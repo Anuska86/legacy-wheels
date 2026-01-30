@@ -137,3 +137,16 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+
+# Ignore local database dumps (backups)
+*.sql
+*.sql.gz
+
+# Ignore SQLite databases (if you use them for testing)
+*.sqlite
+*.db
+
+# Ignore local configuration for DB tools
+.dbeaver/
+.mysql/
