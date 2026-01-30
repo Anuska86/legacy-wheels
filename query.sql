@@ -1,12 +1,15 @@
 /*
-	Select brand, model, condition, color and price from cars
-		where the price is between $20,000 and $60,000
-		and the condition is between 1 and 3
-		and the color contains red
+	Select brand, model, year, sold from cars
+		where the brand is 'Dodge' and year is in the 60s
+		or the brand is either 'Ford' or 'Triumph' and the car is from the 70s
+		only select cars where sold is not true
 */
 
 
-SELECT brand,model,condition, color, price FROM cars
-WHERE price BETWEEN 20000 AND 60000
-AND condition BETWEEN 1 AND 2
-AND color LIKE '%red%';
+SELECT brand, model, year, sold FROM cars
+WHERE (
+    (brand = 'Dodge' AND year BETWEEN 1960 AND 1969)
+    OR 
+    (brand IN ('Ford', 'Triumph') AND year BETWEEN 1970 AND 1979)
+)
+AND sold IS FALSE;

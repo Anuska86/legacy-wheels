@@ -1,3 +1,5 @@
+FIND PRODUCTS ON A TABLE WITH SOME CONDITIONS
+
 Select everything
 
 SELECT \* FROM cars;
