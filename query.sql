@@ -1,70 +1,12 @@
-Select everything
-
- SELECT * FROM cars;
-
-
-
-Select the brand, model, condition and year from the cars table
-
- SELECT brand, model, condition, year FROM cars;
+/*
+	Select brand, model, condition, color and price from cars
+		where the price is between $20,000 and $60,000
+		and the condition is between 1 and 3
+		and the color contains red
+*/
 
 
-
-Our costumer only wants black cars: 
-
- SELECT brand, model, color, year FROM cars
-
- WHERE color='black';
-
-
-
-SELECT brand, model, condition, price FROM cars
-WHERE condition='0'
-
-
-Customer wants cars with price <50000 
-
-SELECT brand, model, condition, price FROM cars
-
-  WHERE price < 50000; 
-
-
-Filter out cars from 1965
-	
-  SELECT brand, model, year, price FROM cars
-
-  WHERE year!=1965; 
-  WHERE year <> 1965;
-
-
-
-Select the brand, model, color and year
-find any car where the color includes 'green'
-
-    SELECT brand, model, color, year FROM cars
-	WHERE color LIKE '%green%';
-
-    WHERE color NOT LIKE '%green%';
-
-
-
-Select the brand, model, color and year for cars
-where the model is 'DB' followed by any other single character
-
-
-    SELECT brand, model, color, year FROM cars
-	WHERE model LIKE 'DB_';
-
-
-
-Select the brand, model, color and year from cars
-exclude any green car show models which are 'DB' followed by any other single character
-
-   
-    SELECT brand, model, color, year FROM cars
-	WHERE color NOT LIKE '%green%'
-	AND model LIKE 'DB_'
-    AND year > 1964;
-
-
-
+SELECT brand,model,condition, color, price FROM cars
+WHERE price BETWEEN 20000 AND 60000
+AND condition BETWEEN 1 AND 2
+AND color LIKE '%red%';
