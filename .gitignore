@@ -143,6 +143,9 @@ vite.config.ts.timestamp-*
 *.sql
 *.sql.gz
 
+# BUT do not ignore my learning notes:
+!query.sql
+
 # Ignore SQLite databases (if you use them for testing)
 *.sqlite
 *.db
