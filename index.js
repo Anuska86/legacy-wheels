@@ -60,11 +60,29 @@ import fs from "fs";
           ('Bentley', 'T2', 1978, 52000, 'silver', 4, false);
 `);
 
+  /*
   // Load the SQL file
   const query = fs.readFileSync("query.sql", "utf8");
 
   // Executing simple queries for sections 1 - 3
   const response = await db.query(query);
+
+  console.clear();
+  console.table(response.rows);
+})();
+
+*/
+
+  // Load the SQL file
+  const query = fs.readFileSync("query.sql", "utf8");
+
+  // For section 4 - execute the CRUD operation
+  await db.exec(query);
+
+  // Display data from the table
+  const response = await db.query(
+    `SELECT brand, model, year, price FROM cars;`,
+  );
 
   console.clear();
   console.table(response.rows);
