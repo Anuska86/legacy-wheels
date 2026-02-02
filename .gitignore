@@ -140,7 +140,7 @@ vite.config.ts.timestamp-*
 
 
 # Ignore local database dumps (backups)
-*.sql
+
 *.sql.gz
 
 # BUT do not ignore my learning notes:

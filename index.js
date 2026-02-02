@@ -1,26 +1,25 @@
 import { PGlite } from '@electric-sql/pglite';
 import fs from 'fs';
 
-const userInput = `Ford`;
-
 (async () => {
   const db = new PGlite();
 
-  // Set up the database
-  const databaseSetup = fs.readFileSync('database-setup.sql', 'utf8');
-  const seedData = fs.readFileSync('seed-data.sql', 'utf8');
-  await db.exec(databaseSetup);
-  await db.exec(seedData);
+  // Set up the DB files
+  const createTables = fs.readFileSync('create-tables.sql', 'utf8');
+  const insertCarsData = fs.readFileSync('insert-cars-data.sql', 'utf8');
+  await db.exec(createTables);
+  await db.exec(insertCarsData);
+
+  // Run the changes made in DM section
+  const crudOperations = fs.readFileSync('crud-operations.sql', 'utf8');
+  await db.exec(crudOperations);
 
   // Load the SQL query file
-  let query = fs.readFileSync('query.sql', 'utf8');
-
-  // Replace placeholder with user input
-  // query = query.replace('<<BRAND>>', userInput);
+  const query = fs.readFileSync('query.sql', 'utf8');
 
 
   // Run the query from the query file
-  const response = await db.query(query, [userInput]);
+  const response = await db.query(query);
 
   console.clear();
   console.table(response.rows);
