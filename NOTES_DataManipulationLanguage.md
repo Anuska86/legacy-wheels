@@ -27,12 +27,25 @@ sold = TRUE
 WHERE brand = 'Ford'
 AND model = 'Escort RS2000';
 
-    Update the record for the Aston Martin DB4 with ID 14
-    	set the condition to 5
-    	and the price to 465000
+Update the record for the Aston Martin DB4 with ID 14
+set the condition to 5
+and the price to 465000
 
 UPDATE cars SET
 condition = 5,
 price = 465000
 WHERE
 id = 14;
+
+---DELETE---
+
+Delete from the cars table, any record where
+condition is 0
+
+DELETE FROM cars
+WHERE condition=0
+
+Delete any record from the cars table where sold is TRUE
+
+DELETE FROM cars
+WHERE sold IS TRUE
