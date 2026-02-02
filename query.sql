@@ -1,5 +1,5 @@
 
 
 
-SELECT AVG(price) FROM cars
-WHERE brand LIKE ('%Bentley%')
+DELETE FROM cars
+WHERE sold IS TRUE
