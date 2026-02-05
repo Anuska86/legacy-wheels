@@ -36,4 +36,24 @@ SELECT name, role, city, state FROM staff
 FULL JOIN dealerships ON dealership_id = dealerships.id;
 
 
+/*
+	Select name, role, sold_price from staff
+	Inner join with sold_cars
+		matching seller with staff.id	
+*/
 
+SELECT name, role, sold_price
+FROM staff 
+INNER JOIN sold_cars ON sold_cars.seller=staff.id; 
+
+/*
+	Use full join to show the name, role and sold_price
+		from staff
+	Full join with sold_cars
+		matching seller with staff.id	
+*/
+
+
+SELECT name, role, sold_price
+FROM staff
+FULL JOIN sold_cars ON sold_cars.seller=staff.id; 

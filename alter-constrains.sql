@@ -23,3 +23,35 @@ INSERT INTO dealerships ( city, state, established )
 	( 'Dallas', 'TX', '2027-07-04' ),
 	( 'Austin', 'TX', '2027-07-04' ),
 	( 'Boston', 'MA', '2027-07-04');
+
+
+    /*
+	1. Alter table sold_cars
+		alter column seller
+		drop the not null constraint
+*/
+
+ALTER TABLE sold_cars
+ALTER COLUMN seller
+DROP NOT NULL; 
+
+
+/*
+	2. Update sold_cars setting the seller to null
+	     where the seller was Frankie
+	     hint: you can select his id from staff in query.js first
+*/
+
+UPDATE sold_cars
+SET seller=NULL
+WHERE seller=5;
+
+
+
+/*
+	3. Delete Frankie Fender from the staff table
+*/
+
+
+DELETE FROM staff
+WHERE name='Frankie Fender'
