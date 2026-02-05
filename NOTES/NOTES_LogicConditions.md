@@ -134,3 +134,18 @@ WHERE EXISTS (
 SELECT 1 FROM cars C
 WHERE C.dealership_id = D.id AND C.price > 50000
 );
+
+/_
+Select the name of salespeople
+(role = 'Salesperson')
+who have not sold a car for more than $45,000
+_/
+
+SELECT name FROM staff S
+WHERE role = 'Salesperson'
+AND NOT EXISTS (
+SELECT 1 FROM sold_cars SC
+WHERE SC.seller = s.id AND SC.sold_price > 45000
+) AND EXISTS (
+SELECT 1 FROM sold_cars SC where seller = s.id
+);
