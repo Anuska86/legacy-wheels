@@ -25,3 +25,15 @@ SELECT brand, model, price, sold, sold_price
 SELECT name, role, city, state
 FROM staff S
 LEFT JOIN dealerships D ON D.id=S.dealership_id; 
+
+/*
+	Select name, role from staff and city, state from dealerships
+	Join the staff table to dealerships using full join
+		match the staff.dealership_id to dealerships.id
+*/
+
+SELECT name, role, city, state FROM staff
+FULL JOIN dealerships ON dealership_id = dealerships.id;
+
+
+
