@@ -247,3 +247,39 @@ WHEN condition >= 1 THEN price < 20000
 ELSE TRUE
 END
 ORDER BY condition;
+
+-- CASE UPDATE --
+
+/_
+Update the price of Aston Martin brand cars:
+_ If the car is a DB5, increase the price by 15%
+_ If the model is 'DB' followed by another single character, increase by 10%
+_ Increase others by 5%
+Only update unsold cars
+\*/
+
+UPDATE cars
+SET price = price \* CASE
+WHEN model = 'DB5' THEN 1.15
+WHEN model LIKE 'DB\_' THEN 1.1
+ELSE 1.05
+END
+WHERE sold IS FALSE
+AND brand = 'Aston Martin';
+
+/_
+Alter the price of cars:
+_ For cars in Chicago, increase the price by 20%
+_ For cars in Detroit, decrease the price by 20%
+_ Any other car should keep the same price
+Only update unsold cars
+Hint: you can use dealership_id in your update without a JOIN
+\*/
+
+UPDATE cars
+SET price = price \* CASE
+WHEN dealership_id = 1 THEN 1.2
+WHEN dealership_id = 3 THEN 0.8
+ELSE 1.0
+END
+WHERE sold IS FALSE;
