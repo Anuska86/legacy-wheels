@@ -182,11 +182,12 @@ Show all staff, even if they have made no sales
 Select:
 _ staff(name)
 _ staff(role)
-_ staff(dealership*id)
-* the sum of the staff member's sales - alias as total*sales
-Use CASE to select the correct value, as defined above, aliased as bonus
-Use GROUP BY to format the output, and ORDER BY bonus then dealership_id
-*/
+_ staff(dealership\*id)
+
+- the sum of the staff member's sales - alias as total*sales
+  Use CASE to select the correct value, as defined above, aliased as bonus
+  Use GROUP BY to format the output, and ORDER BY bonus then dealership_id
+  */
 
 SELECT S.name, S.role, S.dealership_id,
 SUM(SC.sold_price) AS total_sales,
@@ -199,3 +200,50 @@ FROM sold_cars SC
 RIGHT JOIN staff S ON SC.seller = S.id
 GROUP BY (S.name, S.role, S.dealership_id)
 ORDER BY bonus, dealership_id;
+
+-- CASE in WHERE --
+
+/_
+Select brand, model, condition, year and price from cars
+Only select cars which have not been sold, and:
+_ If the year is 1960 or earlier, the condition must be 4 or greater
+_ If the year is 1970 or earlier, the condition must be 3 or greater
+_ If the year is 1980 or earlier, the condition must be 2 or greater
+_ If the year is 1990 or earlier, the condition must be 1 or greater
+_ and any other cars (ELSE TRUE)
+Order by year then condition
+\*/
+
+SELECT brand, model, condition, year, price
+FROM cars
+WHERE
+sold IS FALSE
+AND CASE
+WHEN year <= 1960 THEN condition >= 4
+WHEN year <= 1970 THEN condition >= 3
+WHEN year <= 1980 THEN condition >= 2
+WHEN year <= 1990 THEN condition >= 1
+ELSE TRUE
+END
+ORDER BY year, condition;
+
+/_
+Select the brand, model, condition and price from cars
+Only select cars if sold is false, and:
+_ The condition is >= 4 then the price is below 100000
+_ The condition is >= 3 then the price is below 50000
+_ The condition is >= 1 then the price is below 20000
+_ and any other cars (ELSE TRUE)
+Order by condition
+_/
+
+SELECT brand, model, condition, price
+FROM cars WHERE
+sold IS FALSE
+AND CASE
+WHEN condition >= 4 THEN price < 100000
+WHEN condition >= 3 THEN price < 50000
+WHEN condition >= 1 THEN price < 20000
+ELSE TRUE
+END
+ORDER BY condition;
