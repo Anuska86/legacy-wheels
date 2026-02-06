@@ -283,3 +283,36 @@ WHEN dealership_id = 3 THEN 0.8
 ELSE 1.0
 END
 WHERE sold IS FALSE;
+
+/_
+Select the city and a count of sales of a dealership
+Categorise the dealership's performance:
+_ If the count of sales >= 10 output 'Outperforming'
+_ If the count of sales >= 5 output 'Meeting targets'
+_ If the count of sales >= 1 output 'Underperforming'
+_ Otherwise, output 'No sales'
+Order by total sales in descending order
+_/
+
+SELECT
+D.city,
+COUNT(sc.id) AS total_sales,
+CASE
+WHEN COUNT(sc.id) >= 10 THEN 'Outperforming'
+WHEN COUNT(sc.id) >= 5 THEN 'Meeting targets'
+WHEN COUNT(sc.id) >= 1 THEN 'Underperforming'
+ELSE 'No sales'
+END AS performance_level
+FROM dealerships D
+LEFT JOIN staff S ON S.dealership_id = D.id
+LEFT JOIN sold_cars sc ON sc.seller = S.id
+GROUP BY D.city
+ORDER BY total_sales;
+
+/_
+Group sales into quarters as 'Q1', 'Q2', 'Q3' and 'Q4'
+Output the quarter with the total sales for that quarter
+For this challenge, use EXTRACT() to get the Month from sold_date
+e.g. EXTRACT(MONTH FROM sold_date)
+Use this to define the quarter in your CASE statement
+_/
